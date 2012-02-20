@@ -4,8 +4,8 @@ import javax.swing.JPanel;
 
 public class Gui {
 	JPanel mainPanel;
-	
-	public Gui(){
+
+	public Gui() {
 		mainPanel = new JPanel();
 	}
 }
