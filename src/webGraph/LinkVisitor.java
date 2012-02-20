@@ -1,5 +1,7 @@
 package webGraph;
 
+import java.util.HashSet;
+
 import org.htmlparser.Parser;
 import org.htmlparser.Tag;
 import org.htmlparser.tags.LinkTag;
@@ -15,23 +17,24 @@ import org.htmlparser.visitors.NodeVisitor;
  */
 public class LinkVisitor extends NodeVisitor {
 	private String homeUrl;
-
-	public LinkVisitor(String homeUrl) {
-		super(true, true);
+    private HashSet<String> visited;
+	public LinkVisitor(String homeUrl, HashSet<String> visited) {
+		this.visited = visited;
+		visited.add(homeUrl);
 		this.homeUrl = homeUrl;
 	}
 
 	public void visitTag(Tag tag) {
 		if (tag instanceof LinkTag) {
 
-			System.out.println(homeUrl + " -> " + ((LinkTag) tag).getLink());
-			if (0 != ((LinkTag) tag).getLink().compareTo(homeUrl)) {
+			System.out.println("\"" + homeUrl + "\"" + " -> " + "\"" +((LinkTag) tag).getLink() + "\"");
+			if (!visited.contains(((LinkTag) tag).getLink())) {
 				try {
-					Parser parser = new Parser(homeUrl);
-					LinkVisitor visitor = new LinkVisitor(homeUrl);
+					Parser parser = new Parser(((LinkTag) tag).getLink());
+					LinkVisitor visitor = new LinkVisitor(((LinkTag) tag).getLink(), visited);
 					parser.visitAllNodesWith(visitor);
 				} catch (ParserException e) {
-					e.printStackTrace();
+
 				}
 			}
 		}

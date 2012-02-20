@@ -1,5 +1,7 @@
 package webGraph;
 
+import java.util.HashSet;
+
 import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
 import org.htmlparser.filters.NodeClassFilter;
@@ -19,7 +21,7 @@ public class Collector {
 
 	public Collector(String url) {
 		this.url = url;
-		visitor = new LinkVisitor(url);
+		visitor = new LinkVisitor(url, new HashSet<String>());
 		/**
 		 * Searches the website for Links an prints them
 		 */
