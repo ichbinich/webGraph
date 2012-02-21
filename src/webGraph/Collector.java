@@ -62,9 +62,11 @@ public class Collector {
 			for (String s : collection) {
 				bwriter.newLine();
 				bwriter.write(s + ";");
+				bwriter.flush();
 			}
 			bwriter.newLine();
 			bwriter.write("}");
+			bwriter.flush();
 			// Close the output stream
 			fwriter.close();
 		} catch (Exception e) {// Catch exception if any
