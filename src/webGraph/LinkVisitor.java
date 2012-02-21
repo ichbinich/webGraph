@@ -56,8 +56,8 @@ public class LinkVisitor extends NodeVisitor {
 			 */
 			output.add("\"" + homeUrl + "\"" + " -> " + "\""
 					+ ((LinkTag) tag).getLink() + "\"");
-			// System.out.println("\"" + homeUrl + "\"" + " -> " + "\""
-			// + ((LinkTag) tag).getLink() + "\"");
+			 System.out.println("\"" + homeUrl + "\"" + " -> " + "\""
+			 + ((LinkTag) tag).getLink() + "\"");
 			/*
 			 * If not visited -> visitallNodes!
 			 */
